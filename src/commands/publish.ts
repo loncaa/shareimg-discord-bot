@@ -1,4 +1,5 @@
 import { Message, MessageEmbed } from 'discord.js';
+import * as FacebookService from '../services/facebook_service';
 
 export default {
     name: '!publish',
@@ -11,7 +12,7 @@ export default {
                 const response = {
                     url: undefined,
                     likes: 0,
-                    message: undefined
+                    description: undefined
                 };
 
                 const hasMediaAttachment = message.attachments.size != 0 || message.embeds.length != 0;
@@ -52,12 +53,13 @@ export default {
                     })
                 }
             
-                response.message = message.content;
+                response.description = message.content;
 
                 message.react('📨');
-                msg.channel.send(`Likes ${response.likes}, description: ${response.message} ${response.url}`);
+                msg.channel.send(`Likes ${response.likes}, description: ${response.description} ${response.url}`);
                 
-                //publish to fb
+                //publish image to fb
+                FacebookService.publish(response.url, response.description);
             });
     }
 };
