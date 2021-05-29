@@ -21,11 +21,14 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
+    if(msg.author.bot) return;
+    if(msg.content.indexOf('!') !== 0) return;
+
     const args = msg.content.split(/ +/);
     const command = args.shift().toLowerCase();
 
     //@ts-ignore
-    if (!bot.commands.has(command) || msg.author.bot) return;
+    if (!bot.commands.has(command)) return;
 
     try {
         //@ts-ignore
