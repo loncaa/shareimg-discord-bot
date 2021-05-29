@@ -1,11 +1,11 @@
 import pingCommand from './ping';
 import kickCommand from './kick';
-import publishBestCommand from './publish_best';
 import publishCommand from './publish';
+import initCommand from './init';
 
 export default {
     ping: pingCommand,
     kick: kickCommand,
-    publishBestCommand,
-    publishCommand
+    publish: publishCommand,
+    init: initCommand
 } 
