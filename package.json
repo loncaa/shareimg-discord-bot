@@ -24,8 +24,11 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "http-status": "^1.5.0",
+    "minimist": "^1.2.5",
     "morgan": "^1.10.0",
     "node-schedule": "^2.0.0",
+    "query-string": "^7.0.0",
+    "winston": "^3.3.3",
     "xss-clean": "^0.1.1"
   }
 }
