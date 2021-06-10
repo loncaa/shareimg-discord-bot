@@ -9,7 +9,7 @@ import logger from './utils/logger.winston';
 import routes from './routes/v1';
 import errorHandler from './middlewares/error';
 
-const PORT = process.env['EXPRESS_PORT'];
+const PORT = process.env['PORT'] || process.env['EXPRESS_PORT'];
 
 const app = express();
 
