@@ -27,10 +27,6 @@ router.post('/deauth', (req, res) => {
     res.sendStatus(200);
 });
 
-router.get('/auth/d', (req, res) => {
-    res.sendStatus(200);
-});
-
 router.get('/auth', (req, res) => {
     const facebookLoginUrl = generateFacebookAppURI();
     res.json({ url: facebookLoginUrl });
