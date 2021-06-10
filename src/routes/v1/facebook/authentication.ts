@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as queryString from 'query-string';
 import { retrieveAccessToken } from '../../../services/facebook.service';
 import { generateFacebookAppURI } from '../../../utils/fb.utils';
 
