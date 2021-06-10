@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { fb_config } from '../db/models'
+import { fb_config } from '../../db/models'
 
 //initialize facebook api
 export default {
