@@ -25,17 +25,10 @@ router.get('/auth/c', async (req, res) => {
 });
 
 router.post('/deauth', (req, res) => {
-
-    const urlParams = queryString.parse(req.search);
-
-    logger.debug(`The code is: ${urlParams.code}`);
-
     res.sendStatus(200);
 });
 
 router.get('/auth/d', (req, res) => {
-
-
     res.sendStatus(200);
 });
 
