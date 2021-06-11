@@ -69,22 +69,9 @@ function retrievePageAccessToken(access_token, page_id) {
     });
 }
 
-function retrieveMeObject() {
-    const access_token = process.env['ACCESS_TOKEN'];
-
-    const unescapedURI = `${API_URL}/me?fields=id,name&access_token=${access_token}`;
-
-    return axios.post(encodeURI(unescapedURI)).catch(error => {
-        const { data } = error.response;
-
-        return data.error;
-    })
-}
-
 export {
     retrieveAccessToken,
     retrieveLongLivedAccessToken,
     retrievePageAccessToken,
-    publish,
-    retrieveMeObject
+    publish
 }
