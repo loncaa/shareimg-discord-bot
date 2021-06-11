@@ -1,7 +1,7 @@
-import * as facebookService from '../../../../services/facebook.service';
+import * as facebookPublishService from '../../../../services/facebook/publish.service';
 import * as instagramService from '../../../../services/instagram.service';
 
 export default {
-    fb: facebookService,
+    fb: facebookPublishService,
     ig: instagramService
 }

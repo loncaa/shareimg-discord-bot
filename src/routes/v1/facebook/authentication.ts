@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { fb_config } from '../../../db/models'
-import { retrieveAccessToken, retrieveLongLivedAccessToken, retrievePageAccessToken } from '../../../services/facebook.service';
+import { retrieveAccessToken, retrieveLongLivedAccessToken, retrievePageAccessToken } from '../../../services/facebook/auth.service';
 import { generateFacebookAppOauthURI } from '../../../utils/fb.utils';
 
 import logger from '../../../utils/logger.winston';

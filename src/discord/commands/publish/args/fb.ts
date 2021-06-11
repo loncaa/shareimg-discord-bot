@@ -1,1 +1,1 @@
-import * as FacebookService from '../../../../services/facebook.service';
+import * as FacebookService from '../../../../services/facebook/auth.service';
