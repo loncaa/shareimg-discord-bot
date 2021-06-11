@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { fb_config } from '../../db/models'
+import { generateFacebookAppOauthURI } from '../../utils/fb.utils';
 
 //initialize facebook api
 export default {
@@ -11,10 +11,9 @@ export default {
             if (element === '--fb') {
                 if (args.length >= index + 2) {
                     const page_id = args[index + 1];
-                    const token = args[index + 2];
                     const admin_id = msg.author.id;
 
-                    fb_config.setConfig(admin_id, page_id, token);
+                    msg.reply(`Click on link to add facebook app: ${generateFacebookAppOauthURI(admin_id, page_id)}`);
                 }
             }
         });

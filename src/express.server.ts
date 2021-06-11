@@ -31,7 +31,7 @@ app.listen(PORT, async () => {
 });
 
 // send back a 404 error for any unknown api request
-app.use((req, res, next) => {
+app.use((error, req, res, next) => {
     next(new Error(httpStatus.NOT_FOUND + ' Not found'));
 });
 

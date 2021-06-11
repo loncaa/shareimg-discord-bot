@@ -11,7 +11,30 @@ function publish(admin_id, url, description) {
 
     return axios.post(encodeURI(unescapedURI)).catch(error => {
         logger.error(error.message);
+
+        return error;
     })
+}
+
+function refreshAccessToken() {
+
+}
+
+function retrieveLongLivedAccessToken(access_token) {
+    return axios.get(API_URL + '/oauth/access_token', {
+        params: {
+            grant_type: 'fb_exchange_token',
+            client_id: process.env['FB_APP_ID'],
+            client_secret: process.env['FB_APP_SECRET'],
+            fb_exchange_token: access_token
+        }
+    }).catch(err => {
+        const { data: { error } } = err.response;
+
+        logger.error(`${error.code} ${error.error_subcode} ${error.message}`)
+
+        return err.response;
+    });
 }
 
 function retrieveAccessToken(code) {
@@ -19,13 +42,49 @@ function retrieveAccessToken(code) {
         params: {
             client_id: process.env['FB_APP_ID'],
             client_secret: process.env['FB_APP_SECRET'],
-            redirect_uri: process.env['BASE_URI'] + '/v1/fb/auth/c/',
+            redirect_uri: process.env['BASE_URI'] + '/v1/fb/auth/c',
             code,
         }
+    }).catch(err => {
+        const { data: { error } } = err.response;
+
+        logger.error(`${error.code} ${error.error_subcode} ${error.message}`)
+
+        return err.response;
+    });
+}
+
+function retrievePageAccessToken(access_token, page_id) {
+    return axios.get(API_URL + `/${page_id}`, {
+        params: {
+            fields: "access_token",
+            access_token: access_token
+        }
+    }).catch(err => {
+        const { data: { error } } = err.response;
+
+        logger.error(`${error.code} ${error.error_subcode} ${error.message}`)
+
+        return err.response;
+    });
+}
+
+function retrieveMeObject() {
+    const access_token = process.env['ACCESS_TOKEN'];
+
+    const unescapedURI = `${API_URL}/me?fields=id,name&access_token=${access_token}`;
+
+    return axios.post(encodeURI(unescapedURI)).catch(error => {
+        const { data } = error.response;
+
+        return data.error;
     })
 }
 
 export {
     retrieveAccessToken,
-    publish
+    retrieveLongLivedAccessToken,
+    retrievePageAccessToken,
+    publish,
+    retrieveMeObject
 }
