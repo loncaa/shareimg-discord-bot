@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as morgan from 'morgan';
+import morgan from './utils/logger.morgan';
 import * as helmet from 'helmet';
 import * as compression from 'compression';
 import * as xss from 'xss-clean';
@@ -16,7 +16,7 @@ const app = express();
 // set security HTTP headers
 app.use(helmet());
 
-app.use(morgan('dev'));
+app.use(morgan);
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
 

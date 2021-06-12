@@ -17,8 +17,6 @@ router.get('/auth/c', async (req, res) => {
         return res.sendStatus(200);
     }
 
-    logger.debug(`The code is: ${code}`);
-
     const accessTokenResponse = await retrieveAccessToken(code);
     const { access_token } = accessTokenResponse.data;
 
