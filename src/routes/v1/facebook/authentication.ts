@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { fb_config } from '../../../db/models'
 import { retrieveAccessToken, retrieveLongLivedAccessToken, retrievePageAccessToken } from '../../../services/facebook/auth.service';
-import { generateFacebookAppOauthURI } from '../../../utils/fb.utils';
+import { fetchMeData, listUserAccounts } from '../../../services/facebook/user.service';
 
 const router = express.Router();
 
@@ -20,11 +20,16 @@ router.get('/auth/c', async (req, res) => {
     const longLivedAccessTokenResponse = await retrieveLongLivedAccessToken(access_token);
     const { access_token: long_lived_access_token } = longLivedAccessTokenResponse.data;
 
-    if (parsedState.pageId) {
-        const pageAccessTokenResponse = await retrievePageAccessToken(long_lived_access_token, parsedState.pageId);
-        const { access_token: page_access_token } = pageAccessTokenResponse.data;
+    const meResponse = await fetchMeData(long_lived_access_token);
+    const { id } = meResponse.data;
+    const accountsListResponse = await listUserAccounts(id, long_lived_access_token);
+    const { data: { data: list }} = accountsListResponse;
 
-        fb_config.setConfig(parsedState.uid,  parsedState.pageId, page_access_token);
+    if(list.length > 0){
+        const { id, name, access_token } = list[0];
+        fb_config.setConfig(parsedState.uid, id, access_token);
+    } else{
+        fb_config.setConfig(parsedState.uid, null, long_lived_access_token);
     }
 
     res.status(200).json(longLivedAccessTokenResponse.data);
@@ -32,13 +37,6 @@ router.get('/auth/c', async (req, res) => {
 
 router.post('/deauth', (req, res) => {
     res.sendStatus(200);
-});
-
-router.get('/auth', (req, res) => {
-    const pageId = req.query.pid;
-
-    const facebookLoginUrl = generateFacebookAppOauthURI(0, pageId);
-    res.json({ url: facebookLoginUrl });
 });
 
 export default router;

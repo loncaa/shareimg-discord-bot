@@ -1,7 +1,7 @@
 import axios from 'axios';
 import logger from '../../utils/logger.winston';
 
-const API_URL = "https://graph.facebook.com/v10.0"
+const API_URL = process.env['FB_API_URI'];
 
 
 function refreshAccessToken() {

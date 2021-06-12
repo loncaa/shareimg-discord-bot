@@ -9,11 +9,10 @@ export default {
 
         args.forEach((element, index) => {
             if (element === '--fb') {
-                if (args.length >= index + 2) {
-                    const page_id = args[index + 1];
+                if (args.length >= index) {
                     const admin_id = msg.author.id;
 
-                    msg.reply(`Click on link to add facebook app: ${generateFacebookAppOauthURI(admin_id, page_id)}`);
+                    msg.reply(`Click on link to add facebook app: ${generateFacebookAppOauthURI(admin_id)}`);
                 }
             }
         });

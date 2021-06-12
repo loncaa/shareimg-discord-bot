@@ -2,7 +2,7 @@ import axios from 'axios';
 import { fb_config } from '../../db/models';
 import logger from '../../utils/logger.winston';
 
-const API_URL = "https://graph.facebook.com/v10.0"
+const API_URL = process.env['FB_API_URI'];
 
 function publish(admin_id, url, description) {
     const config = fb_config.getConfig(admin_id);
