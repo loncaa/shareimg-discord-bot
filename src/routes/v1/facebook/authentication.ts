@@ -3,9 +3,6 @@ import { fb_config } from '../../../db/models'
 import { retrieveAccessToken, retrieveLongLivedAccessToken, retrievePageAccessToken } from '../../../services/facebook/auth.service';
 import { generateFacebookAppOauthURI } from '../../../utils/fb.utils';
 
-import logger from '../../../utils/logger.winston';
-
-
 const router = express.Router();
 
 router.get('/auth/c', async (req, res) => {

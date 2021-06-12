@@ -1,5 +1,5 @@
 import * as express from 'express';
-import morgan from './utils/logger.morgan';
+import morgan from './middlewares/logger.morgan';
 import * as helmet from 'helmet';
 import * as compression from 'compression';
 import * as xss from 'xss-clean';

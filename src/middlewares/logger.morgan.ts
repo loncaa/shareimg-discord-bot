@@ -1,4 +1,4 @@
-import WinstonLogger from './logger.winston';
+import WinstonLogger from '../utils/logger.winston';
 import * as morgan from 'morgan';
 
 const stream: morgan.StreamOptions = {
