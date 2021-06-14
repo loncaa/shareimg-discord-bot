@@ -27,6 +27,7 @@
     "minimist": "^1.2.5",
     "morgan": "^1.10.0",
     "node-schedule": "^2.0.0",
+    "pug": "^3.0.2",
     "query-string": "^7.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4",

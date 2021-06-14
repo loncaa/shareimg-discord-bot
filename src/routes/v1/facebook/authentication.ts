@@ -32,7 +32,7 @@ router.get('/auth/c', async (req, res) => {
         fb_config.setConfig(parsedState.uid, null, long_lived_access_token);
     }
 
-    res.status(200).json(longLivedAccessTokenResponse.data);
+    res.status(200).render('index', { title: 'Hey', message: 'You authorized your facebook page!' });
 });
 
 router.post('/deauth', (req, res) => {
