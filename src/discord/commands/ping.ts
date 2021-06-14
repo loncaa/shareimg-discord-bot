@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
 export default {
-    name: 'ping',
+    name: '!ping',
     description: 'Ping!',
     execute: (msg: Message, args) => {
         msg.reply('pong');
