@@ -58,6 +58,7 @@ export default {
                 message.react('📨');
                 msg.channel.send(`Likes ${response.likes}, description: ${response.description} ${response.url}`);
 
+                /*
                 args.forEach((element, index) => {
                     if (element === '--desc') {
                         if (args.length >= index) {
@@ -67,6 +68,16 @@ export default {
                         ArgsFunction[element].publish(msg.author.id, response.url, response.description);
                     }
                 });
+                */
+
+                if(args['desc']){
+                    response.description = args['desc'];
+                }
+
+                if(args['facebook'] || args['f']){
+                    ArgsFunction['fb'].publish(msg.author.id, response.url, response.description);
+                }
+
             });
     }
 };

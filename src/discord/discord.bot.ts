@@ -1,7 +1,6 @@
 import * as Discord from 'discord.js';
 import BotCommands from './commands';
 import logger from '../utils/logger.winston';
-
 import * as minimist from 'minimist';
 //https://www.npmjs.com/package/minimist
 
@@ -31,9 +30,11 @@ bot.on('message', msg => {
     //@ts-ignore
     if (!bot.commands.has(command)) return;
 
+    const argsObj = minimist(args);
+
     try {
         //@ts-ignore
-        bot.commands.get(command).execute(msg, args);
+        bot.commands.get(command).execute(msg, argsObj);
     } catch (error) {
         logger.error(error);
         msg.reply('there was an error trying to execute that command!');
